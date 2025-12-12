@@ -1,6 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Navbar } from '@/components/navbar';
+import { headers } from 'next/headers' // added
+import Web3ModalProvider from '@/context/web3-modal' // added
 
 export const metadata: Metadata = {
   title: 'ROBOIP - AI-Powered Motion Capture IP Platform',
@@ -12,11 +14,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookies = headers().get('cookie') // added
+
   return (
     <html lang="en">
       <body className="font-sans antialiased">
-        <Navbar />
-        {children}
+        <Web3ModalProvider cookies={cookies}>
+          <Navbar />
+          {children}
+        </Web3ModalProvider>
       </body>
     </html>
   );

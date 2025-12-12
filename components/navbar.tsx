@@ -5,9 +5,12 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { usePathname } from 'next/navigation'
 import { Wallet, Menu } from 'lucide-react'
+import { useAppKit, useAppKitAccount } from '@reown/appkit/react'
 
 export function Navbar() {
     const pathname = usePathname()
+    const { open } = useAppKit()
+    const { address, isConnected } = useAppKitAccount()
 
     const navItems = [
         { name: 'Home', href: '/' },
@@ -43,9 +46,15 @@ export function Navbar() {
 
                 {/* Actions */}
                 <div className="flex gap-4 items-center">
-                    <Button variant="ghost" className="hover:text-primary rounded-full hidden md:flex">
-                        <Wallet className="w-4 h-4 mr-2" /> Connect
+                    <Button
+                        variant="ghost"
+                        className="hover:text-primary rounded-full hidden md:flex"
+                        onClick={() => open()}
+                    >
+                        <Wallet className="w-4 h-4 mr-2" />
+                        {isConnected && address ? `${address.slice(0, 6)}...${address.slice(-4)}` : 'Connect'}
                     </Button>
+
                     <Link href="/upload">
                         <Button className="rounded-full bg-primary hover:bg-primary/90 text-white font-semibold">
                             Create Asset
