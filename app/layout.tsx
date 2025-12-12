@@ -1,5 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { Navbar } from '@/components/navbar';
 
 export const metadata: Metadata = {
   title: 'ROBOIP - AI-Powered Motion Capture IP Platform',
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

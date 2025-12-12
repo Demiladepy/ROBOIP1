@@ -1,0 +1,8 @@
+{
+  "/page": "app/page.js",
+  "/marketplace/page": "app/marketplace/page.js",
+  "/assets/page": "app/assets/page.js",
+  "/collaboration/page": "app/collaboration/page.js",
+  "/upload/page": "app/upload/page.js",
+  "/governance/page": "app/governance/page.js"
+}
